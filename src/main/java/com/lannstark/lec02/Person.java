@@ -10,11 +10,11 @@ import org.jetbrains.annotations.Nullable;
 @RequiredArgsConstructor
 public class Person {
 
-  @NotNull
-  private final String name;
+  @Nullable
+  private String name;
 
   @Nullable
-  private final String email;
+  private String email;
 
 //  public Person(String name) {
 //    this.name = name;

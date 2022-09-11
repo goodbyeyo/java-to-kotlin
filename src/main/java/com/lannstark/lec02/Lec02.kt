@@ -13,8 +13,8 @@ fun main() {
     println(startWithNotNull("BC"))
     println(startWithNotNull(null))
 
-    val person = Person("wook", "email")
-    startWithName(person.name)
+//    val person = Person("wook", "email")
+//    startWithName(person.name)
 
     /**
      * @Nullable 로 선언된 필드
