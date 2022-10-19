@@ -1,5 +1,7 @@
 package com.lannstark.lec05
 
+import java.sql.DriverManager.println
+
 /**
  * Java - if-else
  *  -> Statement : 프로그램의 문장, 하나의 값으로 도출되지 않는다
@@ -68,14 +70,14 @@ fun getGradeWithSwitch2(score: Int): String {
 
 fun startsWithA(obj: Any): Boolean {
     return when (obj) {
-        is String -> obj.startsWith("A")
+        is String -> obj.equals("A")
         else -> false
     }
 }
 
 fun judgeNumber(number: Int){
     when (number) {
-        1, 0, -1 -> println(number)
+        1, 0, -1 -> println(number.toString())
         else -> println("1, 0, -1 이 아닙니다")
 
     }

@@ -46,7 +46,7 @@ public class Lec05Main {
     };
   }
 
-  private boolean startsWithA(Object obj{
+  private boolean startsWithA(Object obj){
     if(obj instanceof String) {
       return ((String) obj).startsWith("A");
     }else {
