@@ -10,10 +10,17 @@ public class JavaFilePrinter {
 //  public void readFile(String path) throws IOException {
   public void readFile() throws IOException {
     File currentFile = new File(".");
-    File file = new File(currentFile.getAbsolutePath() + "a.txt");
+    File file = new File(currentFile.getAbsolutePath() + "/a.txt");
     BufferedReader reader = new BufferedReader(new FileReader(file));
     System.out.println(reader.readLine());
     reader.close();
+  }
+
+  // try with resources 구문
+  public void readFile2(String path) throws IOException {
+    try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+      System.out.println(reader.readLine());
+    }
   }
 
 }
