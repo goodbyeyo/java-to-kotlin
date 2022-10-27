@@ -32,6 +32,10 @@ import java.io.FileReader
         // 단 Kotlin 에서 Java 함수를 가져다 사용할 때는 named argument 를 사용할 수 없다
         repeat("test2", useNewLine = false)
 
+        printAll("A","B","C")
+        val array = arrayOf("A","B","C")
+        // 스프레드 연산자 : *
+        printAll(*array)
     }
 
     fun repeat(str: String,
@@ -47,7 +51,12 @@ import java.io.FileReader
         }
     }
 
-    // 4. 같은 타입의 여러 파라미터 받기(가변인자)
+// 4. 같은 타입의 여러 파라미터 받기(가변인자)
+    fun printAll(vararg strings: String) {
+        for(str in strings) {
+            println(str)
+        }
+    }
 
 
 
