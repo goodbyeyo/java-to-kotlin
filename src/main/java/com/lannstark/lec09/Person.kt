@@ -58,6 +58,7 @@ class Person3 (
     // 부생성자 : secondary constructor
     // 최종적으로 주생성자를 this 로 호출해야 한다.
     // body를 가질수 있다
+    // 단, defalut parameter 나 정적 팩토리 메소드를 추천
     constructor(): this("홍길동") {
         println("두번째 부생성자")
     }
@@ -75,6 +76,28 @@ class Person3 (
 
     val email: String = name
         get() = field.uppercase()
+
+    fun getUppercase(): String {
+        return this.name.uppercase()
+    }
+
+    fun getUppercase2(): String = this.name.uppercase()
+
+    val uppercaseName: String
+        get() = this.name.uppercase()
+
+}
+
+// custom setter 를 사용하는 방법
+// 무한 루프를 막기 위해 field라는 키워드를 사용 -> backing field
+class Person4(
+    name: String = "hwang sang wook",
+    var age: Int = 1
+) {
+    var name = name
+        set(value) {
+            field= value.uppercase()
+        }
 }
 
 
