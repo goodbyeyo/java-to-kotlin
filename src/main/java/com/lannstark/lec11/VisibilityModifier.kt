@@ -1,4 +1,4 @@
-package com.lannstark.lect11
+package com.lannstark.lec11
 
 /**
  * 접근지시어
