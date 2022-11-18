@@ -31,7 +31,8 @@ public class Lec15Main {
 
     // traditional for
     for (int i = 0; i < numbers.size() ; i++) {
-      System.out.printf("%s %s,", i, numbers.get(i));
+      System.out.printf("%s %s", i, numbers.get(i));
+      System.out.println(", ");
     }
 
     // Jdk 8
@@ -41,6 +42,16 @@ public class Lec15Main {
 
     // jdk 9
     Map.of(1, "MONDAY", 2, "TUESDAY");
+    
+    for( int key : oldMap.keySet() ) {
+      System.out.println("key = " + key);
+      System.out.println("oldMap.get(key) = " + oldMap.get(key));
+    }
+
+    for (Map.Entry<Integer, String> entry : oldMap.entrySet()) {
+      System.out.println("entry.getKey = " + entry.getKey());
+      System.out.println("entry.getValue = " + entry.getValue());
+    }
 
   }
 
