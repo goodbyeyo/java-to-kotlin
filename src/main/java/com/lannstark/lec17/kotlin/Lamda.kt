@@ -70,7 +70,17 @@ fun main() {
 
     // filterFruits(fruits, { fruit: Fruit -> fruit.name == "사과"})
     // { } 함수를 밖으로 뺄수 있다 -> 함수를 호출할때 가장 마지막 파라미터로 전달
+    // 마지막 파라미터가 함수인 경우, 소괄호 밖에 람다 사용 가능
     filterFruits(fruits) { fruit: Fruit -> fruit.name == "사과" }
+
+    // Fruit 생략 가능
+    filterFruits(fruits) { fruit -> fruit.name == "사과" }
+
+    // 이름(fruit) 변경 가능
+    filterFruits(fruits) { a -> a.name == "사과" }
+
+    // 람다를 작성할때, 람다의 파라미터를 it 으로 직접 참조 할 수 있다
+    filterFruits(fruits) { it.name == "사과"}
 
     // 람다를 여러줄 작성 할수 있고 마지막 줄의 결과가 람다의 반환값이다
     filterFruits(fruits) {fruit ->
@@ -79,6 +89,9 @@ fun main() {
     }
 
     closure(fruits)
+
+    val isApple3: (Fruit) -> Boolean = { fruit: Fruit -> fruit.name == "사과" }
+    filterFruits2(fruits, isApple3)
 
 }
 
@@ -94,6 +107,20 @@ private fun filterFruits(
     val results = mutableListOf<Fruit>()
     for (fruit in fruits) {
         if (filter(fruit)) {
+            results.add(fruit)
+        }
+    }
+    return results
+}
+
+/**
+ * filter 라는 함수 자체를 파라미터로 받게 하는 방법
+ * -> 그 함수를 invoke 혹은 소괄호로 호출 가능
+ */
+private fun filterFruits2(fruits: List<Fruit>, filter: (Fruit) -> Boolean): List<Fruit> {
+    val results = mutableListOf<Fruit>()
+    for (fruit in fruits) {
+        if (filter.invoke(fruit)) {
             results.add(fruit)
         }
     }
