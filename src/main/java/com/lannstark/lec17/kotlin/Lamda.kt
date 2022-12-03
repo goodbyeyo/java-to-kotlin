@@ -127,6 +127,12 @@ private fun filterFruits2(fruits: List<Fruit>, filter: (Fruit) -> Boolean): List
     return results
 }
 
+private fun filterFruitsWithRamda(
+    fruits: List<Fruit>, filter: (Fruit) -> Boolean
+): List<Fruit>{
+    return fruits.filter (filter)
+}
+
 fun readFile(path: String) {
     BufferedReader(FileReader(path)).use { reader ->
         println(reader.readLine())

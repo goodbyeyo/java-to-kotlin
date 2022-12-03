@@ -5,4 +5,8 @@ data class Fruit (
     val name: String,
     val factoryPrice: Long,
     val currentPrice: Long,
-)
+) {
+    fun nullOrValue() {
+        TODO("Not yet implemented")
+    }
+}
