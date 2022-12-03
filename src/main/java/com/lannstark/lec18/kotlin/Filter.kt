@@ -1,14 +1,31 @@
 package com.lannstark.lec18.kotlin
 
 val fruits = listOf(
-    Fruit(0, "사과", 1_000, 2_000),
-    Fruit(1,"사과",1_000, 2_000),
-    Fruit(2, "사과",1_000, 2_000),
-    Fruit(3,"사과",1_000, 2_000),
-    Fruit(4, "바나나",3_000, 4_000),
-    Fruit(5, "바나나",3_000, 4_000),
-    Fruit(6, "바나나",3_000, 4_000),
-    Fruit(7, "바나나",3_000, 4_000),
+    Fruit(1L, "사과", 1_000, 2_000),
+    Fruit(2L,"사과",1_000, 2_000),
+    Fruit(3L, "사과",1_000, 2_000),
+    Fruit(4L,"사과",1_000, 2_000),
+    Fruit(5L, "바나나",3_000, 4_000),
+    Fruit(6L, "바나나",3_000, 4_000),
+    Fruit(7L, "바나나",3_000, 4_000),
+    Fruit(8, "딸기",3_000, 4_000),
+)
+
+val fruitsInList: List<List<Fruit>> = listOf(
+    listOf(
+        Fruit(1L, "사과", 1_000, 2_000),
+        Fruit(2L,"사과",1_000, 2_000),
+        Fruit(3L, "사과",1_000, 2_000),
+        Fruit(4L,"사과",1_000, 2_000),
+    ),
+    listOf(
+        Fruit(5L, "바나나",3_000, 4_000),
+        Fruit(6L, "바나나",3_000, 4_000),
+        Fruit(7L, "바나나",3_000, 4_000),
+    ),
+    listOf(
+        Fruit(8, "딸기",3_000, 4_000),
+    )
 )
 
 fun main(){
@@ -72,8 +89,34 @@ fun main(){
     val map2: Map<String, List<Long>> = fruits
         .groupBy({fruit -> fruit.name}, {fruit -> fruit.factoryPrice })
 
-    // 17. List to Map (id 기준 출고가 Map)
-    val map3: Map<Long, Long> = fruits
-        .associateBy({fruit -> fruit.id}, {fruit->fruit.factoryPrice})
+    // 17. List to Map (id 기준 출고가 Map, value 단일객체가 필요한 경우)
+    val map3: Map<Long, Fruit> = fruits.associateBy { fruit -> fruit.id }
+
+    // 18. List to Map (과일이름 -> List<출고가> Map)
+    val map4: Map<String, List<Long>> = fruits
+        .groupBy({fruit -> fruit.name}, {fruit->fruit.factoryPrice})
+
+    // 19. List to Map (id -> 출고가 Map)
+    val map5: Map<Long, Long> = fruits
+        .associateBy({ fruit -> fruit.id}, {fruit -> fruit.factoryPrice})
+
+    // 20. filter in Map
+    val map6: Map<String, List<Fruit>> = fruits.groupBy { fruit -> fruit.name }
+        .filter {(key, value) -> key == "사과"}
+
+    // 21. 중첩된 컬렙션 처리
+    // 출고가와 현재가가 동일한 과일
+    val samePriceFruits = fruitsInList.flatMap { list ->
+        list.filter { fruit -> fruit.factoryPrice == fruit.currentPrice }
+    }
+    val samePriceFruits2 = fruitsInList.flatMap { list -> list.samePriceFilter }
+
+    // 22. List<List<Fruit>> -> List<Fruit>, 중첩된 컬렙션이 평탄화되는 컬렉션으로 변경
+    val list = fruitsInList.flatten()
+
 }
+
+val List<Fruit>.samePriceFilter: List<Fruit>
+    get() = this.filter(Fruit::isSamePrice)
+
 

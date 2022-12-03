@@ -30,4 +30,5 @@ public class Fruit implements FruitFilter {
     return Arrays.asList("사과", "바나나")
             .contains(fruit.getName()) && fruit.getPrice() > 5_000;
   }
+
 }
